@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 // add a service
-router.get("/", stafsController.AddAStaf);
+router.post("/", stafsController.AddAStaf);
 
 // get all service
 router.get("/", stafsController.getAllStafs);
