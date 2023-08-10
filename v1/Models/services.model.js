@@ -4,13 +4,39 @@ const validator = require("validator");
 
 const serviceSchema = mongoose.Schema(
     {
-        id: { type: String },
-        name: { type: String },
-        brand: { type: String },
-        description: { type: String },
-        price: { type: String },
-        image: { type: String },
-        cartQuantity: { type: Number },
+        name: {
+            type: String,
+            trim: true,
+            unique: false,
+            required: [true, "Name is required"],
+        },
+        category: {
+            type: String,
+            trim: true,
+        },
+        description: {
+            type: String,
+            required: [true, "Description is required"],
+            trim: true,
+        },
+        image: {
+            required: true,
+            type: String,
+            validate: [validator.isURL, "Please provide Product Image URL"],
+        },
+        price: {
+            type: Number,
+            required: [true, "Price is required"],
+        },
+        stock: {
+            type: Number,
+            required: [true, "Stock is required"],
+        },
+        sku: {
+            type: String,
+            required: [false, "SKU is required"],
+        },
+
     },
     {
         timestamps: true,

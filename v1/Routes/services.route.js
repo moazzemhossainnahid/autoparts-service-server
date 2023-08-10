@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 // add a service
-router.post("/", verifyToken, servicesController.AddAService);
+router.post("/", servicesController.AddAService);
 
 // get all service
 router.get("/", servicesController.getAllServices);

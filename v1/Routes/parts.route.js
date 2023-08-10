@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 // add a part
-router.post("/", partsController.addAPart);
+router.post("/", verifyToken, partsController.addAPart);
 
 // get all parts
 router.get("/", partsController.getAllParts);
