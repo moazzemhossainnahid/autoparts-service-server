@@ -1,20 +1,20 @@
 const express = require("express");
-const Products = require('../Models/parts.model');
+const Parts = require('../Models/parts.model');
 require('dotenv').config();
 
 
 
-// publish a product
-exports.publishAProduct = async (req, res) => {
+// add a Part
+exports.addAPart = async (req, res) => {
     try {
-        const product = req.body;
+        const part = req.body;
         // console.log(req.file);
         // console.log(req.body);
-        const products = await Products.create(product);
+        const parts = await Parts.create(part);
         res.status(200).json({
             status: "Successful",
             message: "Data added Successfully",
-            data: products
+            data: parts
         });
     } catch (error) {
         res.json(error);
@@ -22,21 +22,21 @@ exports.publishAProduct = async (req, res) => {
 }
 
 
-// get single Product
-exports.getSingleProduct = async (req, res) => {
+// get single Part
+exports.getSinglePart = async (req, res) => {
     try {
         const id = req.params.id;
         const query = { _id: id }
-        const product = await Products.findOne(query);
-        return res.status(200).json(product);
+        const part = await Parts.findOne(query);
+        return res.status(200).json(part);
     } catch (err) {
         res.status(404).json(err.message);
     }
 }
 
 
-// get all Products
-exports.getAllproducts = async (req, res) => {
+// get all Parts
+exports.getAllParts = async (req, res) => {
     try {
         let filters = { ...req.query };
 
@@ -93,7 +93,7 @@ exports.getAllproducts = async (req, res) => {
         };
 
 
-        const result = await Products.find(filters)
+        const result = await Parts.find(filters)
             .skip(queries.skip)
             .limit(queries.limit)
             .sort(queries.sortBy)
@@ -101,12 +101,12 @@ exports.getAllproducts = async (req, res) => {
             ;
 
 
-        const totalProducts = await Products.countDocuments(filters);
-        const pageCount = Math.ceil(totalProducts / queries.limit);
+        const totalParts = await Parts.countDocuments(filters);
+        const pageCount = Math.ceil(totalParts / queries.limit);
 
 
         // if not data
-        if (Products.length === 0) {
+        if (Parts.length === 0) {
             return res.status(200).json({
                 message: "You've no Data or Entered a Wrong Queries. Please insert first then Find data or check your Queries",
             });
@@ -116,7 +116,7 @@ exports.getAllproducts = async (req, res) => {
         res.status(200).json({
             status: "success",
             message: "Data Get Successfull",
-            data: { totalProducts, pageCount, result }
+            data: { totalParts, pageCount, result }
         });
 
 
@@ -130,33 +130,15 @@ exports.getAllproducts = async (req, res) => {
 }
 
 
-// delete a Product
-exports.deleteAProduct = async (req, res) => {
+// delete a Part
+exports.deleteAPart = async (req, res) => {
     try {
         const id = req.params.id;
         // console.log(id);
         const query = { _id: id };
         // console.log(query);
-        const result = await Products.deleteOne(query);
+        const result = await Parts.deleteOne(query);
         res.send(result)
-    } catch (err) {
-        res.status(404).json(err);
-    }
-}
-
-
-// approve a Product
-exports.approveAProduct = async (req, res) => {
-    try {
-        const id = req.params.id;
-        console.log(id);
-        const filter = { _id: id };
-        const options = { upsert: true };
-        const updateDoc = {
-            $set: { status: 'approve' }
-        };
-        const result = await Products.updateOne(filter, updateDoc, options);
-        res.send(result);
     } catch (err) {
         res.status(404).json(err);
     }

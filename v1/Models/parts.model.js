@@ -14,16 +14,6 @@ const partsSchema = mongoose.Schema(
             type: String,
             trim: true,
         },
-        specifications: [{
-            width: { type: String },
-            height: { type: String },
-        }],
-        variants: [{
-            size: { type: String },
-            color: { type: String },
-            material: { type: String },
-        }],
-        tags: [{ type: String }],
         description: {
             type: String,
             required: [true, "Description is required"],
@@ -44,7 +34,7 @@ const partsSchema = mongoose.Schema(
         },
         sku: {
             type: String,
-            required: [true, "SKU is required"],
+            required: [false, "SKU is required"],
         },
 
 

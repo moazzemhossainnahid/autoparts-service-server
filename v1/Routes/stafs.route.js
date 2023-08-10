@@ -4,17 +4,17 @@ const verifyToken = require("../Middlewares/verifyToken");
 const router = express.Router();
 
 
-// add a service
-router.post("/", stafsController.AddAStaf);
+// add a staf
+router.post("/", verifyToken, stafsController.AddAStaf);
 
-// get all service
+// get all stafs
 router.get("/", stafsController.getAllStafs);
 
-// get single service
-router.get("/:id", stafsController.getSingleStaf);
+// get single staf
+router.get("/:id", verifyToken, stafsController.getSingleStaf);
 
-// delete a service
-router.delete("/:id", stafsController.deleteAStaf);
+// delete a staf
+router.delete("/:id", verifyToken, stafsController.deleteAStaf);
 
 
 

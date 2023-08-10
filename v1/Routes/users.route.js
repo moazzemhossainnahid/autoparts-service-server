@@ -7,7 +7,7 @@ const router = express.Router();
 router.put("/:email", userController.postAnUser);
 
 // get an User
-router.get("/:email", userController.getAnUser);
+router.get("/:email", verifyToken, userController.getAnUser);
 
 // get all Users
 router.get("/", verifyToken, userController.getAllUsers);
@@ -16,7 +16,7 @@ router.get("/", verifyToken, userController.getAllUsers);
 router.delete("/:id", verifyToken, userController.deleteUser);
 
 // get an Admin
-router.get("/isAdmin/:email", userController.getAdmin);
+router.get("/isAdmin/:email", verifyToken, userController.getAdmin);
 
 // make an Admin
 router.put("/admin/:email", verifyToken, userController.makeAdmin);

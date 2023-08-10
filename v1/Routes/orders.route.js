@@ -5,16 +5,16 @@ const router = express.Router();
 
 
 // get all orders
-router.get("/", ordersController.getAllOrders);
+router.get("/", verifyToken, ordersController.getAllOrders);
 
 // get single order
 router.get("/:id", ordersController.getSingleOrder);
 
 // delete a order
-router.delete("/:id", ordersController.deleteAnOrder);
+router.delete("/:id", verifyToken, ordersController.deleteAnOrder);
 
 // approve a order
-router.put("/:id", ordersController.confirmAnOrder);
+router.put("/:id", verifyToken, ordersController.confirmAnOrder);
 
 
 

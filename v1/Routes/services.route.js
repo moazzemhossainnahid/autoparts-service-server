@@ -5,16 +5,16 @@ const router = express.Router();
 
 
 // add a service
-router.post("/", servicesController.AddAService);
+router.post("/", verifyToken, servicesController.AddAService);
 
 // get all service
 router.get("/", servicesController.getAllServices);
 
 // get single service
-router.get("/:id", servicesController.getSingleService);
+router.get("/:id", verifyToken, servicesController.getSingleService);
 
 // delete a service
-router.delete("/:id", servicesController.deleteAService);
+router.delete("/:id", verifyToken, servicesController.deleteAService);
 
 
 

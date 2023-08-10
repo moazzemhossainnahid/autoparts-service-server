@@ -4,20 +4,17 @@ const verifyToken = require("../Middlewares/verifyToken");
 const router = express.Router();
 
 
-// publish a product
-router.post("/", partsController.publishAProduct);
+// add a part
+router.post("/", partsController.addAPart);
 
-// get all products
-router.get("/", partsController.getAllproducts);
+// get all parts
+router.get("/", partsController.getAllParts);
 
-// get single product
-router.get("/:id", partsController.getSingleProduct);
+// get single part
+router.get("/:id", verifyToken, partsController.getSinglePart);
 
-// delete a product
-router.delete("/:id", partsController.deleteAProduct);
-
-// approve a product
-router.put("/:id", partsController.approveAProduct);
+// delete a part
+router.delete("/:id", verifyToken, partsController.deleteAPart);
 
 
 

@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 
-// publish a staf
+// add a staf
 exports.AddAStaf = async (req, res) => {
     try {
         const staf = req.body;
