@@ -28,10 +28,6 @@ const serviceSchema = mongoose.Schema(
             type: Number,
             required: [true, "Price is required"],
         },
-        stock: {
-            type: Number,
-            required: [true, "Stock is required"],
-        },
         sku: {
             type: String,
             required: [false, "SKU is required"],
