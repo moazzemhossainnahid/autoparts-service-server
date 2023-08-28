@@ -19,6 +19,7 @@ const partsRoute = require('./v1/Routes/parts.route');
 const ordersRoute = require('./v1/Routes/orders.route');
 const servicesRoute = require('./v1/Routes/services.route');
 const stafsRoute = require('./v1/Routes/stafs.route');
+const bookingsRoute = require('./v1/Routes/bookings.route');
 const sslsRoute = require('./v1/Routes/ssl.route');
 
 
@@ -31,6 +32,7 @@ app.use('/api/v1/parts', partsRoute);
 app.use('/api/v1/orders', ordersRoute);
 app.use('/api/v1/services', servicesRoute);
 app.use('/api/v1/stafs', stafsRoute);
+app.use('/api/v1/bookings', bookingsRoute);
 app.use('/api/v1/ssl', sslsRoute);
 
 
