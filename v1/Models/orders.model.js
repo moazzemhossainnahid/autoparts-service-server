@@ -10,6 +10,7 @@ const orderSchema = mongoose.Schema(
     fail_url: String,
     cancel_url: String,
     paymentStatus: String,
+    deliveryStatus: String,
     shipping_method: String,
     product_name: String,
     product_category: String,

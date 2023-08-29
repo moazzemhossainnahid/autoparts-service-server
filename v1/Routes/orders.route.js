@@ -1,21 +1,18 @@
-const express = require('express');
+const express = require("express");
 const ordersController = require("../Controllers/orders.controller");
 const verifyToken = require("../Middlewares/verifyToken");
 const router = express.Router();
 
-
 // get all orders
-router.get("/", verifyToken, ordersController.getAllOrders);
+router.get("/", ordersController.getAllOrders);
 
 // get single order
 router.get("/:id", ordersController.getSingleOrder);
 
 // delete a order
-router.delete("/:id", verifyToken, ordersController.deleteAnOrder);
+router.delete("/:id", ordersController.deleteAnOrder);
 
 // approve a order
-router.put("/:id", verifyToken, ordersController.confirmAnOrder);
-
-
+router.put("/:id", ordersController.confirmAnOrder);
 
 module.exports = router;

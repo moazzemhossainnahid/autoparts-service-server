@@ -20,7 +20,8 @@ router.post("/init", async (req, res) => {
       success_url: `${process.env.ROOT}/ssl-payment-success`,
       fail_url: `${process.env.ROOT}/ssl-payment-fail`,
       cancel_url: `${process.env.ROOT}/ssl-payment-cancel`,
-      paymentStatus: "pending",
+      paymentStatus: "paid",
+      deliveryStatus: "pending",
       shipping_method: "Courier",
       product_name: req.body.item_name,
       product_category: req.body.item_category,
@@ -100,7 +101,7 @@ router.post("/ssl-payment-success", async (req, res) => {
     );
 
     res.redirect(
-      `http://127.0.0.1:5173/ssl-payment-success/${req.body.tran_id}`
+      `http://127.0.0.1:5173/ssl-payment-success`
     );
   } catch (error) {
     console.log(error);
