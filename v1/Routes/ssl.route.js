@@ -101,7 +101,7 @@ router.post("/ssl-payment-success", async (req, res) => {
     );
 
     res.redirect(
-      `http://127.0.0.1:5173/ssl-payment-success`
+      `${process.env.CLIENT_URL}/ssl-payment-success`
     );
   } catch (error) {
     console.log(error);
@@ -112,7 +112,7 @@ router.post("/ssl-payment-fail", async (req, res) => {
   try {
     const result = await Orders.deleteOne({ tran_id: req.body.tran_id });
 
-    res.redirect(`http://127.0.0.1:5173`);
+    res.redirect(`${process.env.CLIENT_URL}`);
   } catch (error) {
     console.log(error);
   }
@@ -122,7 +122,7 @@ router.post("/ssl-payment-cancel", async (req, res) => {
   try {
     const result = await Orders.deleteOne({ tran_id: req.body.tran_id });
 
-    res.redirect(`http://127.0.0.1:5173`);
+    res.redirect(`${process.env.CLIENT_URL}`);
   } catch (error) {
     console.log(error);
   }
